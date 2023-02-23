@@ -4,9 +4,11 @@ import com.adaci.bibliotheque.models.Books;
 import com.adaci.bibliotheque.models.Librairies;
 import com.adaci.bibliotheque.repository.BooksRepository;
 import com.adaci.bibliotheque.repository.LibrairiesRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -24,7 +26,7 @@ public class BooksController {
   @Autowired
   private BooksRepository booksRepository;
 
-  @GetMapping("find")
+  @GetMapping()
   public List<Books> findAll() {
     return (List<Books>) booksRepository.findAll();
 
@@ -41,13 +43,19 @@ public class BooksController {
     }
   }
 
-  @PostMapping("/save")
-  public Books save(@RequestBody Books books) {
-    return booksRepository.save(books);
+  @PostMapping()
+  public ResponseEntity<Books> save(@Validated @RequestBody Books books) {
+
+    return new ResponseEntity<>(booksRepository.save(books), HttpStatus.CREATED);
   }
 
-  @PutMapping("/update")
+  @DeleteMapping()
   public ResponseEntity<Books> update(@Validated @RequestBody Books books){
-    return null;
+    return new ResponseEntity<>(booksRepository.save(books), HttpStatus.CREATED);
+  }
+
+  @PutMapping()
+  public void delete(@Validated @RequestBody Books books){
+    booksRepository.deleteById(books.getId());
   }
 }

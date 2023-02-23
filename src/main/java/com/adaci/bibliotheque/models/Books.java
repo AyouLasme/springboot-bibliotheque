@@ -5,9 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -31,6 +28,7 @@ public class Books implements Serializable {
   @NotNull(message = "Le champ isbn est obligatoire")
   @NotBlank(message = "Le champ isbn ne peut etre vide")
   private String isbn;
+
   private int nombreDePage;
   private  String maisonEdition;
   private Date dateDeParution;
