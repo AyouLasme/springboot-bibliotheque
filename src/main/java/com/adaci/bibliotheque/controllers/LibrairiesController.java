@@ -33,7 +33,7 @@ public class LibrairiesController {
     }
   }
 
-  @PostMapping
+  @PostMapping("/save")
   public Librairies save(@Validated @RequestBody Librairies librairies) {
     return librairiesRepository.save(librairies);
   }
