@@ -16,7 +16,7 @@ public class LibrairiesController {
   @Autowired
   private LibrairiesRepository librairiesRepository;
 
-  @GetMapping("find")
+  @GetMapping()
   public List<Librairies> findAll() {
     return (List<Librairies>) librairiesRepository.findAll();
 
@@ -33,7 +33,7 @@ public class LibrairiesController {
     }
   }
 
-  @PostMapping("/save")
+  @PostMapping()
   public Librairies save(@Validated @RequestBody Librairies librairies) {
     return librairiesRepository.save(librairies);
   }
