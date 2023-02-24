@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 
 @Getter
@@ -35,6 +36,12 @@ public class Books implements Serializable {
 
   private Date createdat;
   private Date updatedat;
+
+  @OneToMany(mappedBy = "book",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+  private List<BookCategory> bookCategories;
+
+  @OneToMany(mappedBy = "book",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+  private List<AuthorBook> authorBooks;
 }
 
 

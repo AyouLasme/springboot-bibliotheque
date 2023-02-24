@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,5 +24,8 @@ public class Authors {
 	private char gender;
 	private Date createdat;
   private Date updatedat;
+
+  @OneToMany(mappedBy = "author",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+  private List<AuthorBook> authorBooks;
 
 }

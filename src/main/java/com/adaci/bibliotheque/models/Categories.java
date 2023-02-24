@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,4 +20,7 @@ public class Categories implements Serializable {
   private String libelle;
 	private Date createdat;
   private Date updatedat;
+
+  @OneToMany(mappedBy = "category",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+  private List<BookCategory> bookCategories;
 }
